@@ -120,14 +120,18 @@
         "title": "Distributed Telemetry & Remote BMS Gateway",
         "tag": "Embedded Systems",
         "heroImage": "assets/project-bms.png",
-        "mission": "Monitor and control large-scale electric vehicle fleets with 24/7 reliability.",
-        "problem": "Collecting cell-level battery data across cellular networks requires massive bandwidth. Additionally, managing 5000+ units requires a zero-brick OTA strategy to ensure fleet-wide uptime and safety.",
-        "solution": "Architected a telemetry gateway on Renesas RA2L1 with 2.6x lossless edge-compression. Developed BMS firmware with SoC monitoring and an MQTT-based OTA ecosystem for remote hotfixes and diagnostics.",
+        "mission": "Monitor and control large-scale electric vehicle fleets with 24/7 reliability across diverse client requirements.",
+        "problem": "Collecting cell-level battery data across cellular networks requires massive bandwidth, and serving diverse clients (fleet operators, BMS vendors, EV OEMs) means the firmware must simultaneously support keyless vehicle security, real-time driving analytics, OBD data extraction, and OTA management — all on a single constrained MCU with deterministic timing guarantees.",
+        "solution": "Architected bare-metal C/C++ firmware on Renesas RA2L1 (ARM Cortex-M23), implementing low-level system drivers for UART, SPI, I2C, and CAN with optimal memory layout. Integrated IMU and GNSS sensors validated through field testing on live vehicles. Delivered a 2.6x lossless edge-compression algorithm and edge computing for battery health monitoring and charging/discharging control. OTA firmware and BMS configuration updates over CAN (ISO-TP), co-existing with real-time driving alert generation (harsh acceleration, harsh braking, over-speeding) and Bluetooth-based mobilization/immobilization commands.",
         "stack": [
-            "C (Bare-metal)",
+            "C / C++ (Bare-metal)",
             "Renesas RA2L1 (Cortex-M23)",
-            "CAN/J1939",
-            "MQTT"
+            "CAN J1939 / ISO-TP",
+            "RS-485 (MODBUS)",
+            "MQTT",
+            "Protobuf / Base64",
+            "AIS-140",
+            "IMU / GNSS"
         ],
         "metrics": [
             {
@@ -139,14 +143,18 @@
                 "value": "2.6x"
             },
             {
-                "label": "Latency Reduction",
-                "value": "2x"
+                "label": "Protocols Implemented",
+                "value": "8+"
             }
         ],
         "pivots": [
             {
                 "title": "Fault-Tolerant OTA",
-                "description": "Implemented persistent flash buffers and a safety-first rollback mechanism to ensure zero bricking even during cellular signal drops."
+                "description": "Implemented persistent flash buffers and a safety-first rollback mechanism to ensure zero bricking even during cellular signal drops — critical for remote fleet management at 5000+ unit scale."
+            },
+            {
+                "title": "Protocol Versatility",
+                "description": "A single TCU firmware had to speak multiple industrial dialects: CAN J1939 OBD collection, ISO-TP framed BMS updates, RS-485 (MODBUS) for energy meter data, AIS-140 government compliance, and Protobuf + Base64 encoding for bandwidth-efficient MQTT telemetry. Each integration required careful buffer management to avoid priority inversion on the shared UART/CAN peripherals."
             }
         ],
         "plots": []

@@ -82,3 +82,27 @@
         left: 23px !important;
     }
 }
+
+/* Protocol / tech tag pills inside timeline entries */
+.timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.timeline-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+    border-radius: 4px;
+    padding: 3px 8px;
+    opacity: 0.85;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s;
+}
+
+.timeline-tag:hover {
+    opacity: 1;
+}
