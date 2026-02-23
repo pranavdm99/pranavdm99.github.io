@@ -128,34 +128,34 @@
                     </div>
                 </div>
 
-                <!-- Project 2: CFD UAV -->
+                <!-- Project 2: Multi-Agent Drone -->
                 <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
                     <div class="transformation-layout">
                         <div class="project-header-main">
-                            <span class="tag">Path Planning</span>
-                            <h3>CFD-Informed Robust Drone Navigation</h3>
-                            <p class="mission">Safe autonomous navigation of multi-rotor Crazyflie fleets in
-                                unpredictable turbulent environments.</p>
+                            <span class="tag">Multi-Agent RL</span>
+                            <h3>MAS Drone Coordination (MAPPO vs IPPO)</h3>
+                            <p class="mission">Advanced coordination tasks (multi-hover, multi-spiral) inspired by
+                                NASA's Starling project using Pybullet.</p>
                         </div>
                         <div class="transformation-grid">
                             <div class="transformation-item">
-                                <h4>The Context</h4>
-                                <p>Integration of CFD-aware cost maps into a hybrid Beziér–A* global planner to account
-                                    for wind-shear in cluttered spaces.</p>
+                                <h4>The Insight</h4>
+                                <p>Comparative analysis of Multi-Agent PPO (MAPPO) and Independent PPO (IPPO) for
+                                    coupled aerial maneuvers.</p>
                             </div>
                             <div class="transformation-item">
                                 <h4>The Proof</h4>
-                                <p>43% reduction in maximum deviation from path during high-wind bursts by routing
-                                    through wind-shielded zones.</p>
+                                <p>MAPPO reduced Spiral RMSE to 0.25m and maintained collision rates at 2.1% in
+                                    scenarios where independent agents (IPPO) diverged.</p>
                             </div>
                         </div>
                         <div class="pivot-box">
-                            <h4>Technical Depth: Cost-Map Robustness</h4>
-                            <p>The novelty lay in transforming raw CFD vector fields into a scalar cost-penalty that
-                                penalizes high-turbulence regions, ensuring global paths favor aerodynamic stability
-                                over shortest-distance.</p>
-                            <a href="project-detail.html?id=cfd-uav" class="btn btn-outline"
-                                style="margin-top: 20px;">View Path Metrics</a>
+                            <h4>The Lesson: Cooperation and Communication</h4>
+                            <p>While IPPO suffices for decoupled tasks, coupled behaviors require centralized training
+                                with decentralized execution to mitigate the "non-stationary" environment problem
+                                inherent in multi-agent systems.</p>
+                            <a href="project-detail.html?id=multi-agent-rl" class="btn btn-outline"
+                                style="margin-top: 20px;">Cooperation Metrics</a>
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,39 @@
                     </div>
                 </div>
 
-                <!-- Project 4: Distributed Telemetry -->
+                <!-- Project 4: CFD UAV -->
+                <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
+                    <div class="transformation-layout">
+                        <div class="project-header-main">
+                            <span class="tag">Path Planning</span>
+                            <h3>CFD-Informed Robust Drone Navigation</h3>
+                            <p class="mission">Safe autonomous navigation of multi-rotor Crazyflie fleets in
+                                unpredictable turbulent environments.</p>
+                        </div>
+                        <div class="transformation-grid">
+                            <div class="transformation-item">
+                                <h4>The Context</h4>
+                                <p>Integration of CFD-aware cost maps into a hybrid Beziér–A* global planner to account
+                                    for wind-shear in cluttered spaces.</p>
+                            </div>
+                            <div class="transformation-item">
+                                <h4>The Proof</h4>
+                                <p>43% reduction in maximum deviation from path during high-wind bursts by routing
+                                    through wind-shielded zones.</p>
+                            </div>
+                        </div>
+                        <div class="pivot-box">
+                            <h4>Technical Depth: Cost-Map Robustness</h4>
+                            <p>The novelty lay in transforming raw CFD vector fields into a scalar cost-penalty that
+                                penalizes high-turbulence regions, ensuring global paths favor aerodynamic stability
+                                over shortest-distance.</p>
+                            <a href="project-detail.html?id=cfd-uav" class="btn btn-outline"
+                                style="margin-top: 20px;">View Path Metrics</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Distributed Telemetry -->
                 <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
                     <div class="transformation-layout">
                         <div class="project-header-main">
@@ -204,13 +236,13 @@
                         <div class="transformation-grid">
                             <div class="transformation-item">
                                 <h4>The Role</h4>
-                                <p>Architected firmware for custom gateway devices (Renesas RA2L1) providing CAN/OBD-II
-                                    extraction and lossless edge-compression (2.6x).</p>
+                                <p>Architected firmware for custom gateway devices (Renesas RA2L1) providing OBD-II
+                                    extraction, edge-side battery health computing, and real-time driving analytics.</p>
                             </div>
                             <div class="transformation-item">
                                 <h4>The Impact</h4>
-                                <p>Integrated with existing BMS for SoC monitoring and failsafe control; deployed
-                                    MQTT-based OTA updates for the gateway and battery controllers.</p>
+                                <p>Deployed lossless telemetry compression (2.6x), MQTT-based fail-safe OTA updates, and
+                                    integrated 8+ industrial protocols (CAN, ISO-TP, RS-485).</p>
                             </div>
                         </div>
                         <div class="pivot-box">
@@ -219,38 +251,6 @@
                                 system availability in high-throughput environments.</p>
                             <a href="project-detail.html?id=telemetry-bms" class="btn btn-outline"
                                 style="margin-top: 20px;">System Breakdown</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: Multi-Agent Drone -->
-                <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
-                    <div class="transformation-layout">
-                        <div class="project-header-main">
-                            <span class="tag">Multi-Agent RL</span>
-                            <h3>MAS Drone Coordination (MAPPO vs IPPO)</h3>
-                            <p class="mission">Advanced coordination tasks (multi-hover, multi-spiral) inspired by
-                                NASA's Starling project using Pybullet.</p>
-                        </div>
-                        <div class="transformation-grid">
-                            <div class="transformation-item">
-                                <h4>The Insight</h4>
-                                <p>Comparative analysis of Multi-Agent PPO (MAPPO) and Independent PPO (IPPO) for
-                                    coupled aerial maneuvers.</p>
-                            </div>
-                            <div class="transformation-item">
-                                <h4>The Proof</h4>
-                                <p>MAPPO reduced Spiral RMSE to 0.25m and maintained collision rates at 2.1% in
-                                    scenarios where independent agents (IPPO) diverged.</p>
-                            </div>
-                        </div>
-                        <div class="pivot-box">
-                            <h4>The Lesson: Cooperation and Communication</h4>
-                            <p>While IPPO suffices for decoupled tasks, coupled behaviors require centralized training
-                                with decentralized execution to mitigate the "non-stationary" environment problem
-                                inherent in multi-agent systems.</p>
-                            <a href="project-detail.html?id=multi-agent-rl" class="btn btn-outline"
-                                style="margin-top: 20px;">Cooperation Metrics</a>
                         </div>
                     </div>
                 </div>

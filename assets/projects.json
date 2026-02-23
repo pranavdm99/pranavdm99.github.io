@@ -40,6 +40,46 @@
             }
         ]
     },
+    "multi-agent-rl": {
+        "title": "MAS Drone Coordination (MAPPO vs IPPO)",
+        "tag": "Multi-Agent RL",
+        "heroImage": "assets/hero-bg.png",
+        "mission": "Cooperative formation flying using coordinated multi-agent reinforcement learning.",
+        "problem": "Independent agents (IPPO) diverge in 'coupled' tasks (e.g., spirals) because the environment becomes non-stationary as other agents learn. Absolute coordinates also introduce 'Origin Bias' that breaks generalization.",
+        "solution": "Implemented a Custom MAPPO framework with CTDE (Centralized Training, Decentralized Execution) and Relative Coordinate Encoding. Optimized O(N) scaling for the centralized critic to manage Joint-State (N x 12) inputs without performance lag.",
+        "stack": [
+            "Python",
+            "PyTorch",
+            "Pybullet",
+            "MARL-CTDE"
+        ],
+        "metrics": [
+            {
+                "label": "Collision Rate",
+                "value": "2.1%"
+            },
+            {
+                "label": "Spiral RMSE",
+                "value": "0.25m"
+            },
+            {
+                "label": "Sample Efficiency",
+                "value": "1.42x"
+            }
+        ],
+        "pivots": [
+            {
+                "title": "Origin-Agnostic Learning",
+                "description": "Switched from absolute to relative coordinate frames. This pivot eliminated the 'Origin Bias', allowing drones to coordinate based on proximity rather than their starting positions."
+            }
+        ],
+        "plots": [
+            {
+                "url": "assets/marl_simulation.png",
+                "caption": "Spiral Formation Tracking: Comparing Custom MAPPO against Stable-Baselines3 (SB3)."
+            }
+        ]
+    },
     "cfd-uav": {
         "title": "CFD-Informed Robust Drone Navigation",
         "tag": "Path Planning",
@@ -114,7 +154,12 @@
                 "description": "Initially used static noise models which failed in variable lighting. Implemented online parameter learning to adapt to changing track quality in real-time."
             }
         ],
-        "plots": []
+        "plots": [
+            {
+                "url": "assets/kalman_tracking.png",
+                "caption": "Robust Kalman Filter: Estimated x y z plotted against time and raw data"
+            }
+        ]
     },
     "telemetry-bms": {
         "title": "Distributed Telemetry & Remote BMS Gateway",
@@ -158,45 +203,5 @@
             }
         ],
         "plots": []
-    },
-    "multi-agent-rl": {
-        "title": "MAS Drone Coordination (MAPPO vs IPPO)",
-        "tag": "Multi-Agent RL",
-        "heroImage": "assets/hero-bg.png",
-        "mission": "Cooperative formation flying using coordinated multi-agent reinforcement learning.",
-        "problem": "Independent agents (IPPO) diverge in 'coupled' tasks (e.g., spirals) because the environment becomes non-stationary as other agents learn. Absolute coordinates also introduce 'Origin Bias' that breaks generalization.",
-        "solution": "Implemented a Custom MAPPO framework with CTDE (Centralized Training, Decentralized Execution) and Relative Coordinate Encoding. Optimized O(N) scaling for the centralized critic to manage Joint-State (N x 12) inputs without performance lag.",
-        "stack": [
-            "Python",
-            "PyTorch",
-            "Pybullet",
-            "MARL-CTDE"
-        ],
-        "metrics": [
-            {
-                "label": "Collision Rate",
-                "value": "2.1%"
-            },
-            {
-                "label": "Spiral RMSE",
-                "value": "0.25m"
-            },
-            {
-                "label": "Sample Efficiency",
-                "value": "1.42x"
-            }
-        ],
-        "pivots": [
-            {
-                "title": "Origin-Agnostic Learning",
-                "description": "Switched from absolute to relative coordinate frames. This pivot eliminated the 'Origin Bias', allowing drones to coordinate based on proximity rather than their starting positions."
-            }
-        ],
-        "plots": [
-            {
-                "url": "assets/marl_simulation.png",
-                "caption": "Spiral Formation Tracking: Comparing Custom MAPPO against Stable-Baselines3 (SB3)."
-            }
-        ]
     }
 }
