@@ -1,0 +1,194 @@
+{
+    "energy-rl": {
+        "title": "Energy-Aware Language-Conditioned Manipulation",
+        "tag": "Reinforcement Learning",
+        "heroImage": "assets/project-rl.png",
+        "mission": "Optimize task success vs. mechanical energy consumption using semantic modulation.",
+        "problem": "Traditional RL agents prioritize success at the cost of physical integrity, often 'cheating' by slamming joints to open doors. This leads to high torque spikes and jerky trajectories that damage hardware in real-world deployments.",
+        "solution": "Implemented an Energy-Aware Constraint Optimization (ECO) framework using SAC and Sentence-BERT. By mapping commands like 'gently' to strict energy budgets via Lagrangian multipliers, the system achieves a diverse Pareto frontier of behaviors.",
+        "stack": [
+            "Python",
+            "PyTorch",
+            "MuJoCo",
+            "robosuite",
+            "Sentence-BERT"
+        ],
+        "metrics": [
+            {
+                "label": "Energy Reduction",
+                "value": "30%"
+            },
+            {
+                "label": "Jerk Reduction",
+                "value": "40%"
+            },
+            {
+                "label": "Training Speedup",
+                "value": "8x"
+            }
+        ],
+        "pivots": [
+            {
+                "title": "Reward Grounding",
+                "description": "Shifted from pure goal-based rewards to tactile-grounded rewards using MuJoCo contact sensors to ensure physical interaction was intentional and safe."
+            }
+        ],
+        "plots": [
+            {
+                "url": "assets/pareto_comparison.png",
+                "caption": "Pareto Frontier: Success Rate vs. Energy for different language conditions."
+            }
+        ]
+    },
+    "cfd-uav": {
+        "title": "CFD-Informed Robust Drone Navigation",
+        "tag": "Path Planning",
+        "heroImage": "assets/project-uav.png",
+        "mission": "Enable robust multi-rotor navigation through turbulent, wind-heavy environments.",
+        "problem": "Unpredictable wind disturbances in cluttered environments cause high tracking errors (RMSE) and mission failure. Standard planners ignore the aerodynamic cost of navigating through turbulent 'hotspots'.",
+        "solution": "Developed a hybrid Beziér–A* global planner using FluidX3D CFD wind-field data and NeuroMHE (Neural Moving Horizon Estimation) for adaptive control. The system identifies 'wind-shielded' zones and optimizes trajectories for aerodynamic stability across -35 to 35 wind contexts.",
+        "stack": [
+            "Python",
+            "ROS 2",
+            "FluidX3D",
+            "Crazyflie",
+            "NeuroMHE"
+        ],
+        "metrics": [
+            {
+                "label": "RMSE Reduction",
+                "value": "14%"
+            },
+            {
+                "label": "Max Deviation",
+                "value": "-43%"
+            },
+            {
+                "label": "Stability Era",
+                "value": "97%"
+            }
+        ],
+        "pivots": [
+            {
+                "title": "Contextual Adaptive Control",
+                "description": "Pivoted from static wind models to a Neural MHE approach that classifies wind 'contexts' in real-time, allowing the drone to switch control policies as it enters turbulent lee-side zones."
+            }
+        ],
+        "plots": [
+            {
+                "url": "assets/wind_field.png",
+                "caption": "CFD Wind Field Analysis (FluidX3D): Identifying laminar flow zones for stable navigation."
+            }
+        ]
+    },
+    "kalman-tracking": {
+        "title": "Robust Kalman Filter for Object Tracking",
+        "tag": "Perception & State Estimation",
+        "heroImage": "assets/project-gait.png",
+        "mission": "Precise pose estimation of moving targets under high sensor noise and visual outliers.",
+        "problem": "AprilTag tracking in dynamic scenes often suffers from 'jumpy' results due to partial occlusions. Standard Kalman Filters are sensitive to these outliers, causing erratic and unreliable state estimates.",
+        "solution": "Implemented a Robust Kalman Filter using incremental Expectation-Maximization (EM) to learn outlier distributions online. The system dynamically weights measurements, 'distrusting' noisy spikes while maintaining sub-5ms inference on Raspberry Pi.",
+        "stack": [
+            "C++",
+            "ROS 2",
+            "MATLAB",
+            "Raspberry Pi"
+        ],
+        "metrics": [
+            {
+                "label": "NRMSE Reduction",
+                "value": "79.8%"
+            },
+            {
+                "label": "Baseline NRMSE",
+                "value": "0.094"
+            },
+            {
+                "label": "Robust NRMSE",
+                "value": "0.019"
+            }
+        ],
+        "pivots": [
+            {
+                "title": "EM Online Learning",
+                "description": "Initially used static noise models which failed in variable lighting. Implemented online parameter learning to adapt to changing track quality in real-time."
+            }
+        ],
+        "plots": []
+    },
+    "telemetry-bms": {
+        "title": "Distributed Telemetry & Remote BMS Gateway",
+        "tag": "Embedded Systems",
+        "heroImage": "assets/project-bms.png",
+        "mission": "Monitor and control large-scale electric vehicle fleets with 24/7 reliability.",
+        "problem": "Collecting cell-level battery data across cellular networks requires massive bandwidth. Additionally, managing 5000+ units requires a zero-brick OTA strategy to ensure fleet-wide uptime and safety.",
+        "solution": "Architected a telemetry gateway on Renesas RA2L1 with 2.6x lossless edge-compression. Developed BMS firmware with SoC monitoring and an MQTT-based OTA ecosystem for remote hotfixes and diagnostics.",
+        "stack": [
+            "C (Bare-metal)",
+            "Renesas RA2L1 (Cortex-M23)",
+            "CAN/J1939",
+            "MQTT"
+        ],
+        "metrics": [
+            {
+                "label": "Reliability Rate",
+                "value": "97%+"
+            },
+            {
+                "label": "Data Compression",
+                "value": "2.6x"
+            },
+            {
+                "label": "Latency Reduction",
+                "value": "2x"
+            }
+        ],
+        "pivots": [
+            {
+                "title": "Fault-Tolerant OTA",
+                "description": "Implemented persistent flash buffers and a safety-first rollback mechanism to ensure zero bricking even during cellular signal drops."
+            }
+        ],
+        "plots": []
+    },
+    "multi-agent-rl": {
+        "title": "MAS Drone Coordination (MAPPO vs IPPO)",
+        "tag": "Multi-Agent RL",
+        "heroImage": "assets/hero-bg.png",
+        "mission": "Cooperative formation flying using coordinated multi-agent reinforcement learning.",
+        "problem": "Independent agents (IPPO) diverge in 'coupled' tasks (e.g., spirals) because the environment becomes non-stationary as other agents learn. Absolute coordinates also introduce 'Origin Bias' that breaks generalization.",
+        "solution": "Implemented a Custom MAPPO framework with CTDE (Centralized Training, Decentralized Execution) and Relative Coordinate Encoding. Optimized O(N) scaling for the centralized critic to manage Joint-State (N x 12) inputs without performance lag.",
+        "stack": [
+            "Python",
+            "PyTorch",
+            "Pybullet",
+            "MARL-CTDE"
+        ],
+        "metrics": [
+            {
+                "label": "Collision Rate",
+                "value": "2.1%"
+            },
+            {
+                "label": "Spiral RMSE",
+                "value": "0.25m"
+            },
+            {
+                "label": "Sample Efficiency",
+                "value": "1.42x"
+            }
+        ],
+        "pivots": [
+            {
+                "title": "Origin-Agnostic Learning",
+                "description": "Switched from absolute to relative coordinate frames. This pivot eliminated the 'Origin Bias', allowing drones to coordinate based on proximity rather than their starting positions."
+            }
+        ],
+        "plots": [
+            {
+                "url": "assets/marl_simulation.png",
+                "caption": "Spiral Formation Tracking: Comparing Custom MAPPO against Stable-Baselines3 (SB3)."
+            }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+/* Narrative Annotations */
+.annotation {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-primary);
+    opacity: 0.6;
+    max-width: 250px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    position: absolute;
+    pointer-events: none;
+}
+
+.annotation-left {
+    left: 5%;
+}
+
+.annotation-right {
+    right: 5%;
+}

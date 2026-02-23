@@ -1,0 +1,29 @@
+/* Resume Section Styling */
+.resume-section {
+    padding: 60px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.resume-section h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.resume-section p {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.resume-btns {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.resume-btns .btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}

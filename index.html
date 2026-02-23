@@ -4,36 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranav Deshakulkarni | Embedded Robotics Engineer</title>
+    <title>Pranav Deshakulkarni Manjunath | Embedded Robotics Engineer</title>
     <meta name="description"
-        content="Portfolio of Pranav Deshakulkarni, focusing on the convergence of Robotics and Embedded Systems.">
-    <link rel="stylesheet" href="index.css">
+        content="Portfolio of Pranav Deshakulkarni Manjunath, focusing on the convergence of Robotics and Embedded Systems.">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/sections.css">
+    <link rel="stylesheet" href="styles/projects.css">
+    <link rel="stylesheet" href="styles/timeline.css">
+    <link rel="stylesheet" href="styles/depth.css">
+    <link rel="stylesheet" href="styles/resume.css">
+    <link rel="stylesheet" href="styles/manifesto.css">
+    <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <nav id="navbar">
-        <div class="container">
-            <a href="#hero" class="logo">
-                <img src="assets/pdm_logo_original.jpeg" alt="PDM Logo" class="logo-img">
-            </a>
-            <ul class="nav-links">
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <nav id="navbar"></nav>
 
     <header id="hero" class="hero">
         <div class="hero-bg"></div>
-        <div class="annotation annotation-right" style="top: 20%;">// Simulation is for training.<br>// Determinism is
-            for reality.</div>
         <div class="container">
             <div class="hero-content fade-up">
                 <h1>Pranav <span class="text-gradient">Deshakulkarni Manjunath</span></h1>
-                <div class="subtitle">Systems-First Embedded Robotics</div>
+                <div class="subtitle">Robotics Engineer | Embedded Systems </div>
                 <p>Decoding the interface between high-level autonomy and deterministic system execution. I bridge the
                     gap between research-grade algorithms and field-deployable robotic platforms.</p>
                 <div class="hero-btns">
@@ -52,6 +46,21 @@
                 <p
                     style="margin-top: 20px; color: var(--text-muted); max-width: 700px; margin-left: auto; margin-right: auto;">
                     Mastering the spectrum from bare-metal firmware to complex autonomous behaviors.</p>
+            </div>
+
+            <div class="manifesto-inner fade-up" style="margin-bottom: 60px;">
+                <p class="manifesto-headline">I build deterministic systems for uncertain environments.</p>
+                <span class="manifesto-label">Principles</span>
+                <div class="manifesto-grid">
+                    <div class="manifesto-cell"><span class="manifesto-dash">—</span>Robotics at scale is an embedded
+                        systems problem.</div>
+                    <div class="manifesto-cell"><span class="manifesto-dash">—</span>Energy efficiency predicts
+                        mechanical longevity.</div>
+                    <div class="manifesto-cell"><span class="manifesto-dash">—</span>Simulation trains models.
+                        Determinism runs machines.</div>
+                    <div class="manifesto-cell"><span class="manifesto-dash">—</span>Failures accelerate system
+                        maturity.</div>
+                </div>
             </div>
 
             <div class="expertise-grid">
@@ -78,9 +87,6 @@
         </div>
     </section>
 
-    <div class="annotation annotation-left" style="top: 50%;">// Robotics at scale is an<br>// embedded systems problem.
-    </div>
-
     <section id="projects" class="section">
         <div class="container">
             <div class="section-header fade-up">
@@ -89,122 +95,161 @@
             </div>
 
             <div class="project-showcase">
-                <!-- Project 1: RL -->
+                <!-- Project 1: RL Manipulation -->
                 <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
                     <div class="transformation-layout">
                         <div class="project-header-main">
-                            <span class="tag">Robotics & Autonomy</span>
-                            <h3>Language-Conditioned Robotic Control</h3>
-                            <p class="mission">Balance task success with energy efficiency and motion smoothness in
-                                unpredictable environments.</p>
+                            <span class="tag">Reinforcement Learning</span>
+                            <h3>Energy-Aware Language-Conditioned Manipulation</h3>
+                            <p class="mission">Optimization of torque-dense robotic behaviors using semantic motion gaya
+                                (gently, quickly).</p>
                         </div>
                         <div class="transformation-grid">
                             <div class="transformation-item">
                                 <h4>The Context</h4>
-                                <p>Language-conditioned RL (SAC + Sentence-BERT) on MuJoCo for semantic modulation of
-                                    tasks.</p>
+                                <p>Training a Franka Panda (MuJoCo) for door-opening and lifting. Implementation of
+                                    ECO (Energy-aware Constraint Optimization) using Lagrangian multipliers.</p>
                             </div>
                             <div class="transformation-item">
                                 <h4>The Outcome</h4>
-                                <p>30% reduction in energy, 40% reduction in jerk, and 8x training throughput
-                                    optimization.</p>
+                                <p>30% reduction in mechanical energy; 80% reduction in Jerk. 8x training throughput
+                                    optimization (50 to 400+ FPS).</p>
                             </div>
                         </div>
                         <div class="pivot-box">
-                            <h4>The Pivot: From Success-Only to Energy-Aware</h4>
-                            <p>Initial models achieved task success but with excessive jitter and high current draw.
-                                Pivoted to a multi-objective reward function incorporating joint torque penalties,
-                                mirroring real-world actuator constraints.</p>
+                            <h4>The Pivot: Correcting the "Toddler" Policy</h4>
+                            <p>Initial RL agents prioritized success at any cost, frequently "cheating" by slamming the
+                                arm into doors. I grounded the reward in tactile contact sensors, rewarding physical
+                                integrity over raw joint success.</p>
+                            <a href="project-detail.html?id=energy-rl" class="btn btn-outline"
+                                style="margin-top: 20px;">Explore Architecture</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: UAV -->
+                <!-- Project 2: CFD UAV -->
                 <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
                     <div class="transformation-layout">
                         <div class="project-header-main">
-                            <span class="tag">Aerial Robotics</span>
-                            <h3>CFD-Informed UAV Navigation</h3>
-                            <p class="mission">Optimize global trajectories for fixed-wing UAVs operating in turbulent,
-                                wind-heavy environments.</p>
+                            <span class="tag">Path Planning</span>
+                            <h3>CFD-Informed Robust Drone Navigation</h3>
+                            <p class="mission">Safe autonomous navigation of multi-rotor Crazyflie fleets in
+                                unpredictable turbulent environments.</p>
                         </div>
                         <div class="transformation-grid">
                             <div class="transformation-item">
                                 <h4>The Context</h4>
-                                <p>Hybrid Bezier-A* global planner (ROS 2) integrating CFD-generated wind-field data for
-                                    energy-aware routing.</p>
+                                <p>Integration of CFD-aware cost maps into a hybrid Beziér–A* global planner to account
+                                    for wind-shear in cluttered spaces.</p>
                             </div>
                             <div class="transformation-item">
                                 <h4>The Proof</h4>
-                                <p>Achieved 15% reduction in flight time and 12% improvement in energy efficiency across
-                                    simulated cross-wind scenarios.</p>
+                                <p>43% reduction in maximum deviation from path during high-wind bursts by routing
+                                    through wind-shielded zones.</p>
                             </div>
                         </div>
                         <div class="pivot-box">
-                            <h4>The Action: Solving the Non-Holonomic Constraint</h4>
-                            <p>Initial A* paths were too sharp for fixed-wing dynamics. Pivoted to a
-                                curvature-constrained Bezier smoothing layer that respects aerodynamic limits while
-                                maintaining CFD optimality.</p>
+                            <h4>Technical Depth: Cost-Map Robustness</h4>
+                            <p>The novelty lay in transforming raw CFD vector fields into a scalar cost-penalty that
+                                penalizes high-turbulence regions, ensuring global paths favor aerodynamic stability
+                                over shortest-distance.</p>
+                            <a href="project-detail.html?id=cfd-uav" class="btn btn-outline"
+                                style="margin-top: 20px;">View Path Metrics</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 3: BMS -->
+                <!-- Project 3: Kalman Tracking -->
+                <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
+                    <div class="transformation-layout">
+                        <div class="project-header-main">
+                            <span class="tag">Perception & State Estimation</span>
+                            <h3>Robust Kalman Filter for Object Tracking</h3>
+                            <p class="mission">High-fidelity pose estimation of moving targets (AprilTags) in the
+                                presence of extreme sensor noise and outliers.</p>
+                        </div>
+                        <div class="transformation-grid">
+                            <div class="transformation-item">
+                                <h4>The Context</h4>
+                                <p>Adaptation of the EM-based Robust Kalman Filter (Scaal et al.) for hardware
+                                    deployment on Raspberry Pi with ROS 2.</p>
+                            </div>
+                            <div class="transformation-item">
+                                <h4>The Proof</h4>
+                                <p>Reduced Normalized Root Mean Square Error (NRMSE) from 0.094 to 0.019; significantly
+                                    outperformed standard KF in outlier-heavy scenarios.</p>
+                            </div>
+                        </div>
+                        <div class="pivot-box">
+                            <h4>The Action: Online Learning</h4>
+                            <p>Implemented incremental Expected-Maximization (EM) for online learning of noise
+                                parameters, allowing the filter to adapt to changing lighting and sensor quality in
+                                real-time.</p>
+                            <a href="project-detail.html?id=kalman-tracking" class="btn btn-outline"
+                                style="margin-top: 20px;">Filter Deep Dive</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Distributed Telemetry -->
                 <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
                     <div class="transformation-layout">
                         <div class="project-header-main">
                             <span class="tag">Embedded Systems</span>
-                            <h3>BMS & Fleet Telemetry Ecosystem</h3>
-                            <p class="mission">Deliver high-reliability battery monitoring and remote fleet management
-                                for 5000+ deployed units.</p>
+                            <h3>Distributed Telemetry & Remote BMS Gateway</h3>
+                            <p class="mission">Developing retrofittable IoT hardware for real-time monitoring and
+                                control of high-density battery fleets.</p>
                         </div>
                         <div class="transformation-grid">
                             <div class="transformation-item">
-                                <h4>The Context</h4>
-                                <p>Mission-critical BMS firmware (Cortex-M23) requiring 24/7 reliability and real-time
-                                    SoC estimation.</p>
+                                <h4>The Role</h4>
+                                <p>Architected firmware for custom gateway devices (Renesas RA2L1) providing CAN/OBD-II
+                                    extraction and lossless edge-compression (2.6x).</p>
                             </div>
                             <div class="transformation-item">
-                                <h4>The Proof</h4>
-                                <p>Increased fleet reliability from 85% to 97.7% through structured root-cause analysis
-                                    and OTA delta-updates.</p>
+                                <h4>The Impact</h4>
+                                <p>Integrated with existing BMS for SoC monitoring and failsafe control; deployed
+                                    MQTT-based OTA updates for the gateway and battery controllers.</p>
                             </div>
                         </div>
                         <div class="pivot-box">
-                            <h4>Depth: OTA Failure Mode Analysis</h4>
-                            <p>Early OTA deployments suffered from intermittent data corruption. Implemented a robust
-                                rollback mechanism and persistent flash buffers to ensure zero bricking across
-                                bandwidth-constrained deployments.</p>
+                            <h4>Field Maturity: Reliability at Scale</h4>
+                            <p>Diagnosed and resolved edge-case connectivity failures across 5000+ units, achieving 97%+
+                                system availability in high-throughput environments.</p>
+                            <a href="project-detail.html?id=telemetry-bms" class="btn btn-outline"
+                                style="margin-top: 20px;">System Breakdown</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 4: Edge AI -->
-                <div class="project-entry glass fade-up" style="padding: 40px;">
+                <!-- Project 5: Multi-Agent Drone -->
+                <div class="project-entry glass fade-up mb-large" style="padding: 40px; margin-bottom: 60px;">
                     <div class="transformation-layout">
                         <div class="project-header-main">
-                            <span class="tag">Edge AI & Signal Processing</span>
-                            <h3>TinyML Gait Prediction</h3>
-                            <p class="mission">Predict lower-limb gait trajectories on-device to minimize latency for
-                                active prosthetics control.</p>
+                            <span class="tag">Multi-Agent RL</span>
+                            <h3>MAS Drone Coordination (MAPPO vs IPPO)</h3>
+                            <p class="mission">Advanced coordination tasks (multi-hover, multi-spiral) inspired by
+                                NASA's Starling project using Pybullet.</p>
                         </div>
                         <div class="transformation-grid">
                             <div class="transformation-item">
-                                <h4>The Context</h4>
-                                <p>Sub-10ms inference pipeline on Arduino Nano 33 BLE (Cortex-M4) using TensorFlow Lite
-                                    Micro. </p>
+                                <h4>The Insight</h4>
+                                <p>Comparative analysis of Multi-Agent PPO (MAPPO) and Independent PPO (IPPO) for
+                                    coupled aerial maneuvers.</p>
                             </div>
                             <div class="transformation-item">
-                                <h4>The Outcome</h4>
-                                <p>Successfully predicted heel-strike events with 94% accuracy while maintaining a 5mA
-                                    power envelope.</p>
+                                <h4>The Proof</h4>
+                                <p>MAPPO reduced Spiral RMSE to 0.25m and maintained collision rates at 2.1% in
+                                    scenarios where independent agents (IPPO) diverged.</p>
                             </div>
                         </div>
                         <div class="pivot-box">
-                            <h4>The Lesson: Quantization vs. Resolution</h4>
-                            <p>Full 32-bit models were too slow for real-time control. I optimized the model via
-                                post-training 8-bit quantization; the challenge was balancing the loss in precision with
-                                the critical need for deterministic sub-10ms timing.</p>
+                            <h4>The Lesson: Cooperation and Communication</h4>
+                            <p>While IPPO suffices for decoupled tasks, coupled behaviors require centralized training
+                                with decentralized execution to mitigate the "non-stationary" environment problem
+                                inherent in multi-agent systems.</p>
+                            <a href="project-detail.html?id=multi-agent-rl" class="btn btn-outline"
+                                style="margin-top: 20px;">Cooperation Metrics</a>
                         </div>
                     </div>
                 </div>
@@ -212,7 +257,51 @@
         </div>
     </section>
 
-    <div class="annotation annotation-right" style="top: 75%;">// Field deployability ><br>// Research novelty.</div>
+    <section id="depth" class="section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Additional Field Experiences</h2>
+                <div class="underline"></div>
+            </div>
+
+            <div class="depth-grid">
+                <div class="depth-card fade-up">
+                    <h4><i class="fas fa-trophy"></i> Turtlebot Competition</h4>
+                    <p>Optimized path planning and obstacle avoidance for Turtlebot3. Finished Top 5 out of 25+ teams.
+                    </p>
+                    <div class="lesson">Lesson: Clean modular code is faster to debug under competition pressure than
+                        "clever" one-liners.</div>
+                </div>
+
+                <div class="depth-card fade-up failed">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Autonomous Robotics Challenge</h4>
+                    <p>Designed a custom robot for block transportation in a cluttered 10x10 arena. Failed to complete
+                        task.</p>
+                    <div class="lesson">Lesson: Gripper dynamics and clutter management are the true
+                        bottlenecks of automation, not just global navigation. Physical reality has no undo button.
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-row fade-up">
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/WGT4iHtVp6c" title="Field Experience 1" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/67gCSRwdfk4" title="Field Experience 2" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/PRSZ-CEsrRc" title="Field Experience 3" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="experience" class="section glass-container">
         <div class="container">
@@ -225,28 +314,28 @@
                 <div class="timeline-item fade-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="date">2017 - 2021</span>
-                        <h3>Phase 1: Hardware Foundations</h3>
-                        <p>B.E. Mechanical. Mastering mechatronics, system dynamics, and building the physical intuition
-                            required for robotics.</p>
+                        <span class="date">2024 - Present</span>
+                        <h3>The Intelligence Era</h3>
+                        <p>M.Eng Robotics at UMD. Convergence of high-level intelligence and deterministic hardware
+                            execution. Researching long-term autonomy</p>
                     </div>
                 </div>
                 <div class="timeline-item fade-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="date">2021 - 2024</span>
-                        <h3>Phase 2: The Reliability Era</h3>
+                        <h3>The Reliability Era</h3>
                         <p>Scaling firmware at Intellicar. Transitioning from "it works" to "it works for 5000 units in
-                            the heat of Bengaluru." Driven by RTOS and RAS.</p>
+                            the heart of Bengaluru"</p>
                     </div>
                 </div>
                 <div class="timeline-item fade-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="date">2024 - Present</span>
-                        <h3>Phase 3: The Intelligence Era</h3>
-                        <p>M.Eng Robotics at UMD. Convergence of high-level intelligence and deterministic hardware
-                            execution. Researching long-term autonomy.</p>
+                        <span class="date">2017 - 2021</span>
+                        <h3>Hardware Foundations</h3>
+                        <p>B.E. Mechanical. Mastering mechatronics, system dynamics, and building the physical intuition
+                            required for robotics.</p>
                     </div>
                 </div>
             </div>
@@ -275,12 +364,12 @@
                 <a href="https://github.com/pranavdm99" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="mailto:pranavdeshakulkarni@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
-            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">© 2026 Pranav Deshakulkarni. Built
-                for the intersection of Hardware and Intelligence.</p>
+            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">© 2026 Pranav Deshakulkarni
+                Manjunath. Built for the intersection of Hardware and Intelligence.</p>
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 
 </html>
