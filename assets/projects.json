@@ -3,40 +3,151 @@
         "title": "Energy-Aware Language-Conditioned Manipulation",
         "tag": "Reinforcement Learning",
         "heroImage": "assets/project-rl.png",
-        "mission": "Optimize task success vs. mechanical energy consumption using semantic modulation.",
-        "problem": "Traditional RL agents prioritize success at the cost of physical integrity, often 'cheating' by slamming joints to open doors. This leads to high torque spikes and jerky trajectories that damage hardware in real-world deployments.",
-        "solution": "Implemented an Energy-Aware Constraint Optimization (ECO) framework using SAC and Sentence-BERT. By mapping commands like 'gently' to strict energy budgets via Lagrangian multipliers, the system achieves a diverse Pareto frontier of behaviors.",
+        "mission": "Controllable energy-success tradeoffs in robotic manipulation via natural language conditioning.",
+        "problem": "Standard RL optimizes for 'what' to do, not 'how'. Agents often 'reward hack'—e.g., slamming a door to open it—resulting in high torque spikes, wasted energy, and potential hardware damage with no intuitive way to modulate behavior post-training.",
+        "solution": "Built a language-conditioned policy in Robosuite (Franka Panda) that maps natural language commands ('carefully', 'quickly', 'normally') to physical energy budgets. Leveraging the ECO (Energy-Constrained Optimization) framework with Lagrangian multipliers and Sentence-BERT embeddings, the system treats energy as a hard constraint. This enables instant behavior switching (92% success @ 32% energy savings) without retraining.",
         "stack": [
             "Python",
             "PyTorch",
-            "MuJoCo",
-            "robosuite",
-            "Sentence-BERT"
+            "MuJoCo (Robosuite)",
+            "Sentence-BERT",
+            "Soft Actor-Critic (SAC)"
         ],
         "metrics": [
             {
-                "label": "Energy Reduction",
-                "value": "30%"
+                "label": "Energy Savings ('Efficiently')",
+                "value": "32%"
             },
             {
-                "label": "Jerk Reduction",
-                "value": "40%"
+                "label": "Jerk Reduction (Smoothness)",
+                "value": "80%+"
             },
             {
-                "label": "Training Speedup",
-                "value": "8x"
+                "label": "Success Rate ('Normally')",
+                "value": "100%"
             }
         ],
         "pivots": [
             {
-                "title": "Reward Grounding",
-                "description": "Shifted from pure goal-based rewards to tactile-grounded rewards using MuJoCo contact sensors to ensure physical interaction was intentional and safe."
+                "title": "Closing the Reward Hack",
+                "description": "Initial agents shoved doors open using the wrist. I pivoted to a physics-grounded reward that mandates gripper-to-handle contact, ensuring the robot actually grasps and pulls—shifting from outcome-based to behavior-based success."
+            },
+            {
+                "title": "Zero-Shot Language Control",
+                "description": "By conditioning the Lagrangian budget on SBERT embeddings, the policy learned to map semantic intent to physical constraints. This allows a user to trade off reliability for efficiency in real-time just by changing the command string."
             }
         ],
         "plots": [
             {
-                "url": "assets/pareto_comparison.png",
-                "caption": "Pareto Frontier: Success Rate vs. Energy for different language conditions."
+                "url": "assets/energy_rl_tradeoff.png",
+                "caption": "Success-energy tradeoff: Pareto frontier across diverse language-conditioned budgets."
+            },
+            {
+                "url": "assets/energy_rl_torque.png",
+                "caption": "Torque impact: 80% smoother motion via energy-aware optimization."
+            }
+        ]
+    },
+    "cfd-uav": {
+        "title": "Physics-Informed Robust Drone Navigation",
+        "tag": "Robotics & Path Planning",
+        "heroImage": "assets/project-uav.png",
+        "mission": "Automated vision-to-simulation pipeline for resilient global planning in geometry-dense turbulent environments.",
+        "problem": "UAVs in cluttered urban-like zones face unpredictable localized turbulence. Standard A* planners ignore aerodynamic costs, resulting in high trajectory deviation and energy loss. Rapidly prototyping these environments manually is also slow and unscalable.",
+        "solution": "Developed a 'Digital Twin' pipeline: an overhead ZED camera extracts obstacle geometries, start/goal points, and fan-based wind inlets via AprilTags. A FluidX3D CFD solver generates a 2D wind costmap of the static environment. A hybrid A* and Bezier-curve planner then identifies preferential paths—leveraging shielded zones or tailwinds—to minimize aerodynamic impact, executed on a Crazyflie 2.1 using a Lee controller.",
+        "stack": [
+            "Python",
+            "ROS 2",
+            "FluidX3D",
+            "Crazyflie 2.1",
+            "ZED Camera (OpenCV)",
+            "AprilTags"
+        ],
+        "metrics": [
+            {
+                "label": "95th Dev Reduction (Crosswind)",
+                "value": "49.5%"
+            },
+            {
+                "label": "Frechet Dev Reduction (Mixed)",
+                "value": "36.9%"
+            },
+            {
+                "label": "Max Dev Reduction (Headwind)",
+                "value": "13.0%"
+            }
+        ],
+        "pivots": [
+            {
+                "title": "Configurable Physics Costmap",
+                "description": "Shifted from treating obstacles as binary collisions to treating them as aerodynamic shields. This allowed the planner to choose slightly longer paths that stay in 'shadow' zones, significantly improving tracking stability."
+            },
+            {
+                "title": "Automated Env Mapping",
+                "description": "Implemented an AprilTag-based vision system to instantly map physical lab setups to the CFD grid, reducing environmental configuration time from hours to seconds and enabling rapid testing across 3+ complex wind scenarios."
+            }
+        ],
+        "plots": [
+            {
+                "url": "assets/wind_field2.jpeg",
+                "caption": "Physics-Informed Path: The CFD planner (green) avoids high-wind zones, preferring the shielded lee-sides of obstacles compared to the baseline A* (red)."
+            }
+        ]
+    },
+    "sram-cim": {
+        "title": "SRAM-Based Compute-In-Memory Accelerator",
+        "tag": "Embedded Machine Learning",
+        "heroImage": "assets/65x10-8b-6tsram-instance.png",
+        "mission": "Overcoming the von Neumann 'memory wall' via in-memory analog parallel MAC operations.",
+        "problem": "Traditional architectures face a bottleneck: moving data between memory and processor consumes 100x more energy than the computation itself. Real-time inference on edge devices requires a paradigm shift to compute where the data lives.",
+        "solution": "Designed and simulated a 65x10 SRAM-based CIM array using Cadence Virtuoso. By integrating neural network weights directly into memory cells and developing custom word-line drivers and sense amplifiers, the system performs parallel multiply-accumulate operations in the analog domain for high-speed, low-power MNIST classification.",
+        "stack": [
+            "Cadence Virtuoso",
+            "Spectre Simulation",
+            "SRAM Design",
+            "Analog/Mixed-Signal",
+            "MNIST (PyTorch Model Extraction)"
+        ],
+        "metrics": [
+            {
+                "label": "Energy Efficiency",
+                "value": "1.13 nJ/inf"
+            },
+            {
+                "label": "Inference Latency",
+                "value": "1.30 \u00b5s"
+            },
+            {
+                "label": "EDP (Energy-Delay Product)",
+                "value": "1.47 fJ\u00b7s"
+            },
+            {
+                "label": "Classification Accuracy",
+                "value": "90.9%"
+            }
+        ],
+        "pivots": [
+            {
+                "title": "Peripheral Scalability",
+                "description": "Pivoted from manual bit-line control to automated word-line drivers with precise timing constraints, ensuring the analog sensing window was wide enough to handle non-ideal cell discharge across the 65x10 array."
+            },
+            {
+                "title": "Non-Linearity Mitigation",
+                "description": "Developed a custom sense amplifier layout to compensate for local process variations, maintaining the linearity of the analog accumulation for the final layer of the MNIST classifier."
+            }
+        ],
+        "plots": [
+            {
+                "url": "assets/65x10-8b-6tsram-instance.png",
+                "caption": "SRAM-CIM Physical Design: Silicon layout of the 8-bit word-line instance architecture."
+            },
+            {
+                "url": "assets/sram-circuit-analysis.png",
+                "caption": "Analog MAC Analysis: Signal propagation and analog domain multiply-accumulate verification."
+            },
+            {
+                "url": "assets/sram-sim-results.png",
+                "caption": "Inference Benchmarks: Spectre simulation results across MNIST test vectors."
             }
         ]
     },
@@ -77,47 +188,6 @@
             {
                 "url": "assets/marl_simulation.png",
                 "caption": "Spiral Formation Tracking: Comparing Custom MAPPO against Stable-Baselines3 (SB3)."
-            }
-        ]
-    },
-    "cfd-uav": {
-        "title": "CFD-Informed Robust Drone Navigation",
-        "tag": "Path Planning",
-        "heroImage": "assets/project-uav.png",
-        "mission": "Enable robust multi-rotor navigation through turbulent, wind-heavy environments.",
-        "problem": "Unpredictable wind disturbances in cluttered environments cause high tracking errors (RMSE) and mission failure. Standard planners ignore the aerodynamic cost of navigating through turbulent 'hotspots'.",
-        "solution": "Developed a hybrid Beziér–A* global planner using FluidX3D CFD wind-field data and NeuroMHE (Neural Moving Horizon Estimation) for adaptive control. The system identifies 'wind-shielded' zones and optimizes trajectories for aerodynamic stability across -35 to 35 wind contexts.",
-        "stack": [
-            "Python",
-            "ROS 2",
-            "FluidX3D",
-            "Crazyflie",
-            "NeuroMHE"
-        ],
-        "metrics": [
-            {
-                "label": "RMSE Reduction",
-                "value": "14%"
-            },
-            {
-                "label": "Max Deviation",
-                "value": "-43%"
-            },
-            {
-                "label": "Stability Era",
-                "value": "97%"
-            }
-        ],
-        "pivots": [
-            {
-                "title": "Contextual Adaptive Control",
-                "description": "Pivoted from static wind models to a Neural MHE approach that classifies wind 'contexts' in real-time, allowing the drone to switch control policies as it enters turbulent lee-side zones."
-            }
-        ],
-        "plots": [
-            {
-                "url": "assets/wind_field.png",
-                "caption": "CFD Wind Field Analysis (FluidX3D): Identifying laminar flow zones for stable navigation."
             }
         ]
     },
@@ -162,12 +232,12 @@
         ]
     },
     "telemetry-bms": {
-        "title": "Distributed Telemetry & Remote BMS Gateway",
+        "title": "Distributed Telemetry System",
         "tag": "Embedded Systems",
         "heroImage": "assets/project-bms.png",
         "mission": "Monitor and control large-scale electric vehicle fleets with 24/7 reliability across diverse client requirements.",
         "problem": "Collecting cell-level battery data across cellular networks requires massive bandwidth, and serving diverse clients (fleet operators, BMS vendors, EV OEMs) means the firmware must simultaneously support keyless vehicle security, real-time driving analytics, OBD data extraction, and OTA management — all on a single constrained MCU with deterministic timing guarantees.",
-        "solution": "Architected bare-metal C/C++ firmware on Renesas RA2L1 (ARM Cortex-M23), implementing low-level system drivers for UART, SPI, I2C, and CAN with optimal memory layout. Integrated IMU and GNSS sensors validated through field testing on live vehicles. Delivered a 2.6x lossless edge-compression algorithm and edge computing for battery health monitoring and charging/discharging control. OTA firmware and BMS configuration updates over CAN (ISO-TP), co-existing with real-time driving alert generation (harsh acceleration, harsh braking, over-speeding) and Bluetooth-based mobilization/immobilization commands.",
+        "solution": "Developed bare-metal C/C++ firmware on Renesas RA2L1 (ARM Cortex-M23), implementing low-level system drivers for UART, SPI, I2C, and CAN with optimal memory layout. Integrated IMU and GNSS sensors validated through field testing on live vehicles. Delivered a 2.6x lossless edge-compression algorithm and edge computing for battery health monitoring and charging/discharging control. OTA firmware and BMS configuration updates over CAN (ISO-TP), co-existing with real-time driving alert generation (harsh acceleration, harsh braking, over-speeding) and Bluetooth-based mobilization/immobilization commands.",
         "stack": [
             "C / C++ (Bare-metal)",
             "Renesas RA2L1 (Cortex-M23)",

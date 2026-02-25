@@ -55,7 +55,7 @@ function renderNavigation(currentId, data) {
         const prevProject = data[prevId];
         navHtml += `
             <a href="project-detail.html?id=${prevId}" class="nav-btn">
-                <span class="nav-btn-label"><i class="fas fa-chevron-left"></i> Previous System</span>
+                <span class="nav-btn-label"><i class="fas fa-chevron-left"></i> Previous Project</span>
                 <span class="project-title">${prevProject.title}</span>
             </a>
         `;
@@ -67,7 +67,7 @@ function renderNavigation(currentId, data) {
         const nextProject = data[nextId];
         navHtml += `
             <a href="project-detail.html?id=${nextId}" class="nav-btn">
-                <span class="nav-btn-label">Next System <i class="fas fa-chevron-right"></i></span>
+                <span class="nav-btn-label">Next Project <i class="fas fa-chevron-right"></i></span>
                 <span class="project-title">${nextProject.title}</span>
             </a>
         `;
@@ -141,17 +141,17 @@ function renderProject(project) {
         plotSection.className = 'content-section';
         plotSection.innerHTML = `
             <h3><i class="fas fa-chart-line"></i> Performance Proofs</h3>
-            <div id="project-plots"></div>
+            <div id="project-plots" class="plots-grid"></div>
         `;
         mainContent.appendChild(plotSection);
 
         const plotsContainer = plotSection.querySelector('#project-plots');
         project.plots.forEach(plot => {
             const div = document.createElement('div');
-            div.style.marginBottom = '40px';
+            div.className = 'plot-item';
             div.innerHTML = `
-                <img src="${plot.url}" alt="${plot.caption}" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border); margin-bottom: 15px;">
-                <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; font-style: italic;">${plot.caption}</p>
+                <img src="${plot.url}" alt="${plot.caption}" loading="lazy">
+                <p class="plot-caption">${plot.caption}</p>
             `;
             plotsContainer.appendChild(div);
         });

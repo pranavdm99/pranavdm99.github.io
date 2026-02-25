@@ -1,26 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&family=JetBrains+Mono&display=swap');
 
 :root {
-    /* Color Palette - Robotic Industrial */
-    --bg-deep: #0a0b10;
-    --bg-surface: #12141d;
-    --accent-primary: #00f2ff;
-    /* Electric Blue */
-    --accent-secondary: #00ff88;
-    /* Energy Green */
-    --text-main: #e2e8f0;
+    /* Color Palette - Precision Engineering */
+    --bg-deep: #1f273a;
+    --bg-surface: #2e394b;
+    --accent-primary: #38bdf8;
+    --accent-secondary: #818cf8;
+    --text-main: #f1f5f9;
     --text-muted: #94a3b8;
-    --glass-bg: rgba(18, 20, 29, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(30, 41, 59, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.08);
 
     /* Typography */
-    --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
+    /* Theme Variables for Depth & Overlays */
+    --border-subtle: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.3);
+    --overlay-heavy: rgba(0, 0, 0, 0.6);
+    --overlay-light: rgba(0, 0, 0, 0.3);
+    --overlay-gradient: rgba(0, 0, 0, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.6);
+    --shadow-color-card: rgba(0, 0, 0, 0.4);
+
+    --nav-bg: rgba(15, 23, 42, 0.4);
+    --nav-bg-scrolled: rgba(15, 23, 42, 0.85);
+
     /* Spacing */
-    --section-padding: 100px 20px;
-    --card-radius: 12px;
+    --section-padding: 120px 20px;
+    --card-radius: 16px;
+}
+
+[data-theme="light"] {
+    --bg-deep: #d1d5d9;
+    --bg-surface: #d8dadc;
+    --accent-primary: #0284c7;
+    --accent-secondary: #4f46e5;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(0, 0, 0, 0.08);
+
+    --border-subtle: rgba(0, 0, 0, 0.1);
+    --border-strong: rgba(0, 0, 0, 0.3);
+    --overlay-heavy: rgba(255, 255, 255, 0.5);
+    --overlay-light: rgba(255, 255, 255, 0.1);
+    --overlay-gradient: rgba(255, 255, 255, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --shadow-color-card: rgba(0, 0, 0, 0.08);
+
+    --nav-bg: rgba(241, 245, 249, 0.4);
+    --nav-bg-scrolled: rgba(241, 245, 249, 0.85);
 }
 
 * {
@@ -45,7 +77,8 @@ h1,
 h2,
 h3 {
     font-family: var(--font-heading);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    font-weight: 600;
 }
 
 a {
@@ -72,11 +105,11 @@ ul {
 /* Glassmorphism Classes */
 .glass {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: var(--card-radius);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 /* Buttons */
@@ -93,18 +126,44 @@ ul {
 
 .btn-primary {
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    color: var(--bg-deep);
-    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.2);
 }
 
 .btn-outline {
-    border: 2px solid var(--accent-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--accent-primary);
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 242, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* Theme Toggle Button */
+.theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.theme-btn:hover {
+    opacity: 1;
+    background: rgba(128, 128, 128, 0.1);
 }
 
 /* Typography Helpers */
@@ -127,11 +186,12 @@ ul {
 }
 
 .section-header .underline {
-    width: 80px;
-    height: 5px;
+    width: 60px;
+    height: 3px;
     background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
     margin: 0 auto;
-    border-radius: 5px;
+    border-radius: 3px;
+    opacity: 0.8;
 }
 
 /* Animation Utilities */

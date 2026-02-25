@@ -107,6 +107,47 @@
             padding-left: 20px;
             border-left: 2px solid var(--accent-primary);
         }
+
+        .plots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .plot-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid var(--glass-border);
+            transition: 0.3s;
+        }
+
+        .plot-item:hover {
+            border-color: var(--accent-primary);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .plot-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .plot-caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .plots-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -116,7 +157,7 @@
     <header id="project-hero" class="detail-hero">
         <div class="container">
             <div class="back-nav">
-                <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Systems</a>
+                <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
             </div>
             <div class="hero-content">
                 <span id="project-tag" class="tag">Loading...</span>
@@ -165,7 +206,7 @@
                 <!-- Next/Prev buttons injected here -->
             </div>
             <p style="margin-top: 40px; opacity: 0.6;">Ready to see more?</p>
-            <a href="index.html#projects" class="btn btn-primary" style="margin-top: 10px;">Explore Other Systems</a>
+            <a href="index.html#projects" class="btn btn-primary" style="margin-top: 10px;">Explore Other Projects</a>
         </div>
     </footer>
 
