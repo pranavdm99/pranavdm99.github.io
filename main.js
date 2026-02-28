@@ -1,8 +1,9 @@
-import { renderNavbar } from './js/components/Navbar.js';
+import { renderNavbar } from './js/components/NavbarV2.js';
 import { renderFooter } from './js/components/Footer.js';
 import { initAnimations } from './js/modules/animations.js';
 import { initTheme } from './js/modules/theme.js';
 import { initProjectFilter } from './js/modules/filter.js';
+import { initConsole } from './js/modules/tactical_hud.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     renderNavbar();
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFooter();
     initAnimations();
     initProjectFilter();
+    initConsole();
 
-    console.log("Modular Portfolio Initialized.");
+    console.log("Tactical HUD Initialized.");
 });

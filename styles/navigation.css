@@ -22,6 +22,10 @@ nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1440px;
+    /* Match the new site width */
+    margin: 0 auto;
+    padding: 0 40px;
 }
 
 .logo {
@@ -35,7 +39,8 @@ nav .container {
     transition: transform 0.3s ease;
 }
 
-.logo-dark, .logo-light {
+.logo-dark,
+.logo-light {
     display: none;
 }
 
@@ -54,6 +59,8 @@ nav .container {
 .nav-links {
     display: flex;
     gap: 40px;
+    margin-left: auto;
+    /* Push links to the right */
 }
 
 .nav-links a {
